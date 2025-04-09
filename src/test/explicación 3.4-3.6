@@ -1,0 +1,84 @@
+1. Verificación de la Suma Mediante Raíz y Subárboles
+
+
+Una propiedad intrínsec de los árboles binarios es que muchas funciones pueden definirse de
+forma recursiva sobre la estructura del árbol. Por ejemplo, en el caso de la suma de los valores
+almacenados en un ABB, esta propiedad se formaliza como:
+
+S(T) = r + S(T_izquierdo) + S(T_derecho)
+
+Donde S(T) es la suma total del árbol T, r es el valor almacenado en la raíz, y T_izquierdo,
+T_derecho son los subárboles izquierdo y derecho, como su nombre indica, respectivamente.
+En nuestro test, hemos construido un ABB insertando los valores enteros de 0 a 128 en orden
+creciente. Esto produce un árbol hacia la derecha, es decir, una estructura equivalente a una
+lista enlazada. En este caso:
+
+- La raíz es 0.
+- El subárbol izquierdo es nulo, por lo que su suma es 0.
+- El subárbol derecho contiene los valores de 1 a 128.
+
+La suma de los enteros de 1 a 128 es:
+
+(128 × 129)/2 = 8256
+
+Por tanto, el test verifica que:
+
+getSuma() = 0 + 0 + 8256 = 8256
+
+lo cual concuerda con el resultado esperado, validando así tanto
+la correcta implementación recursiva como la propiedad estructural del ABB.
+
+
+
+
+2. Verificación de la Altura del Árbol
+
+
+La altura de un árbol binario se define como el número de nodos en el camino
+más largo desde la raíz hasta una hoja. Dado que los elementos se insertaron en orden
+ascendente, el árbol generado no está balanceado: cada nuevo nodo se inserta como
+hijo derecho del anterior. Este es el caso peor, y genera un árbol de altura máxima,
+equivalente a una lista enlazada.
+
+Si insertamos 129 nodos (de 0 a 128), la altura esperada es:
+
+getAltura() = 129
+
+El test compara el resultado del método getAltura() con este valor esperado para garantizar
+que el cálculo de la altura se realiza correctamente.
+
+
+
+
+3. Verificación del Camino hacia un Valor Específico
+
+
+Se comprueba la corrección del método getCamino(valor), el cual retorna la lista de valores de
+los nodos que forman el camino desde la raíz hasta el nodo con el valor buscado. En el ejemplo,
+buscamos el camino hacia el nodo que contiene el valor 110. Como el árbol lo construimos
+insertando slo valores crecientes, cada nodo está a la derecha del anterior, y el camino
+hasta 110 debe recorrer exactamente los siguientes nodos:
+
+[0, 1, 2, ..., 110]
+
+Esto da una lista de 111 elementos, y por tanto 110 transiciones entre nodos.
+El test verifica que:
+
+- La lista retornada sea exactamente igual a la lista esperada.
+- La longitud del camino coincida con el número de saltos esperados.
+
+Por tanto podemos ver que este test permite validar la implementación de búsqueda dentro del
+ABB, así como la trazabilidad de recorridos desde la raíz a cualquier nodo interno.
+
+
+
+
+4. Bibliografía:
+
+
+- Weiss, M. A. (2014). Data Structures and Algorithm Analysis in Java (3rd ed.). Pearson.
+- Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2009). Introduction to
+  Algorithms (3rd ed.). MIT Press.
+- FING (2023). Estructuras de Datos y Algoritmos I. Facultad de Ingeniería, Universidad de la
+  República.
+- Wikipedia contributors. (2024). Árbol binario de búsqueda. Wikipedia, la enciclopedia libre.
